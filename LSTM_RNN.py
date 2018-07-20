@@ -1,12 +1,8 @@
 # ----------------------------------------------------------------------------------------#
-# PRE-PROGRAM DESCRIPTION
-# ----------------------------------------------------------------------------------------#
 # Program Purpose/Design
 # ----------------------------------------------------------------------------------------#
 # This program is designed to estimate a LSTM Recurrent Neural Network using Keras with a
-# TensorFlow Backend. This program was developed using Python 3.5.2. This is the only
-# version of Python this program is known to work in, although it may work with other
-# Python 3 distributions. It probably will not work in any Python 2 distributions.
+# TensorFlow Backend. This program was developed using Python 3.5.2.
 
 # ----------------------------------------------------------------------------------------#
 # Recommendations for Program Improvement
@@ -137,7 +133,7 @@ if __name__=='__main__':
 
     print('> Loading data... ')
 
-    filepath = r'C:\Users\Tyler\PycharmProjects\Quant_Trading\project_data\FncTest.csv'
+    filepath = r'..\project_data\data.csv'
     x_train, y_train, x_test, y_test, y_all, rounded_train_percent = fnc_load_data(filepath, window_length)
 
     print('> Data Loaded. Compiling...')
@@ -146,7 +142,7 @@ if __name__=='__main__':
     model = fnc_build_model([(len(x_train[0]),len(x_train[0][0])), layer_1, layer_2, 1],0.2)
 
     # Add TensorBoard callback
-    os.chdir('C:\\Users\Tyler\PycharmProjects\Quant_Trading\project_data\\')
+    os.chdir('..\project_data\\')
     tbCallback = keras.callbacks.TensorBoard(log_dir='./LSTM_TF_log', histogram_freq=0, batch_size=32, write_graph=True,
                                              write_grads=False, write_images=False, embeddings_freq=0,
                                              embeddings_layer_names=None, embeddings_metadata=None)
@@ -172,7 +168,7 @@ if __name__=='__main__':
 
     print('Training took {} seconds. \n Train set size: {} \n Test set size: {}'.format(time.time() - start_time,len(x_train),len(x_test)))
 
-    outfile_path = r'C:\Users\Tyler\PycharmProjects\Quant_Trading\project_data\SP500Predictions.csv'
+    outfile_path = r'..\project_data\predictions.csv'
     np.savetxt(outfile_path,np.transpose(predictions_vs_actuals),delimiter=',')
     print('Output saved to {}'.format(outfile_path))
 
